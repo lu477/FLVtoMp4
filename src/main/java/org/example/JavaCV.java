@@ -4,7 +4,7 @@ import org.bytedeco.ffmpeg.global.avcodec;
 import org.bytedeco.javacv.FFmpegFrameGrabber;
 import org.bytedeco.javacv.FFmpegFrameRecorder;
 
-public class Main {
+public class JavaCV {
     public static void convertWithoutTranscoding(String inputPath, String outputPath) throws Exception {
 
         FFmpegFrameGrabber grabber = new FFmpegFrameGrabber(inputPath);
