@@ -14,7 +14,6 @@ import static org.bytedeco.ffmpeg.global.avutil.*;
 
 public class JavaCpp {
     public static void main(String[] args) {
-        // Assuming args contains input and output file paths
         if (args.length < 1) {
             System.err.println("Usage: JavaCpp <input_file>");
             System.exit(1);
@@ -44,16 +43,13 @@ public class JavaCpp {
             outStream.codecpar().codec_tag(0);
         }
 
-        // Open the output file
         AVIOContext ioContext = new AVIOContext(null);
 
         avio_open(ioContext, outputPath, AVIO_FLAG_WRITE);
 
         outputFormatContext.pb(ioContext);
 
-        // Write the stream header
         avformat_write_header(outputFormatContext, (AVDictionary) null);
-
 
         AVPacket packet = new AVPacket();
         while (av_read_frame(inputFormatContext, packet) >= 0) {
