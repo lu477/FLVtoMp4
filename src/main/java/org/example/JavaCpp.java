@@ -36,11 +36,9 @@ public class JavaCpp {
         avformat_alloc_output_context2(outputFormatContext, null, null, outputPath);
 
         for (int i = 0; i < inputFormatContext.nb_streams(); i++) {
-
             AVStream inStream = inputFormatContext.streams(i);
             AVStream outStream = avformat_new_stream(outputFormatContext, null);
             AVCodecParameters inCodecParameters = inStream.codecpar();
-
             avcodec_parameters_copy(outStream.codecpar(), inCodecParameters);
             outStream.codecpar().codec_tag(0);
         }
@@ -52,6 +50,7 @@ public class JavaCpp {
         outputFormatContext.pb(ioContext);
 
         avformat_write_header(outputFormatContext, (AVDictionary) null);
+
 
         AVPacket packet = new AVPacket();
         while (av_read_frame(inputFormatContext, packet) >= 0) {
@@ -67,8 +66,11 @@ public class JavaCpp {
         }
 
         av_write_trailer(outputFormatContext);
+
         avformat_close_input(inputFormatContext);
+
         avio_closep(outputFormatContext.pb());
+
         avformat_free_context(outputFormatContext);
 
         System.out.println("Conversion completed.");

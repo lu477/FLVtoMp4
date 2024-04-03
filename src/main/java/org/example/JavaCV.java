@@ -34,7 +34,7 @@ public class JavaCV {
 
     public static void main(String[] args) {
         try {
-            convertWithoutTranscoding("input.flv", "output.mp4");
+            convertWithoutTranscoding("test.flv", "output.mp4");
         } catch (Exception e) {
             e.printStackTrace();
         }
