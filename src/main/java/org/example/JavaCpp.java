@@ -53,7 +53,6 @@ public class JavaCpp {
 
         avformat_write_header(outputFormatContext, (AVDictionary) null);
 
-
         AVPacket packet = new AVPacket();
         while (av_read_frame(inputFormatContext, packet) >= 0) {
             AVStream inStream = inputFormatContext.streams(packet.stream_index());
